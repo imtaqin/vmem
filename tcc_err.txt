@@ -1,0 +1,3 @@
+C:/bin/v/thirdparty/libgc/gc.c:4773: warning: NOSERVICE redefined
+C:/bin/v/thirdparty/libgc/gc.c:15078: warning: implicit declaration of function '__atomic_load_n'
+C:/bin/v/thirdparty/libgc/gc.c:15078: error: '__ATOMIC_RELAXED' undeclared

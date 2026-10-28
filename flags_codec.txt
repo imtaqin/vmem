@@ -1,0 +1,22 @@
+-fwrapv
+-o "C:\\Users\\ADMINI~1\\DOCUME~1\\PROJECT\\REVERS~1\\Vmem\\vmem\\value_codec_test.exe"
+-Wl,-stack=33554432
+-Werror=implicit-function-declaration
+-D GC_THREADS=1
+-D THREAD_LOCAL_ALLOC=1
+-D GC_NOT_DLL=1
+-D GC_WIN32_THREADS=1
+-D GC_BUILTIN_ATOMIC=1
+-I"C:\bin\v\thirdparty\libgc\include"
+"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\v_0\\VALUE_~1.C"
+-std=c99
+-D_DEFAULT_SOURCE
+-municode
+-bt25
+-ldbghelp
+-luser32
+"C:\bin\v/thirdparty/tcc/lib/libgc.a"
+-lws2_32
+-ladvapi32
+-lkernel32
+-lpsapi

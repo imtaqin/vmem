@@ -1,0 +1,5 @@
+# MCP servers for Codex CLI (and tools reading [mcp_servers.*]).
+# Path is machine-absolute; adjust if the repo moves (see README "Agent integration").
+[mcp_servers.vmem]
+command = "node"
+args = ["C:/Users/Administrator/Documents/PROJECT/ReverserID/Vmem/mcp/server.mjs"]

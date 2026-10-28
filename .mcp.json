@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "vmem": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:/Users/Administrator/Documents/PROJECT/ReverserID/Vmem/mcp/server.mjs"
+      ]
+    }
+  }
+}

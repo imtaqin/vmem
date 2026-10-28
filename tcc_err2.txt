@@ -1,0 +1,2 @@
+In file included from C:/bin/v/thirdparty/libgc/gc.c:4708:
+C:/bin/v/thirdparty/libgc/gc.c:4708: error: include file 'atomic_ops.h' not found

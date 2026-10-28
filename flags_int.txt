@@ -1,0 +1,31 @@
+-fwrapv
+-o "C:\\Users\\ADMINI~1\\DOCUME~1\\PROJECT\\REVERS~1\\Vmem\\vmem\\integration_core_test.exe"
+-Wl,-stack=33554432
+-Werror=implicit-function-declaration
+-D GC_THREADS=1
+-D THREAD_LOCAL_ALLOC=1
+-D GC_NOT_DLL=1
+-D GC_WIN32_THREADS=1
+-D GC_BUILTIN_ATOMIC=1
+-I"C:\bin\v\thirdparty\libgc\include"
+"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\v_0\\INTEGR~3.C"
+-std=c99
+-D_DEFAULT_SOURCE
+-municode
+-bt25
+-ldbghelp
+-luser32
+"C:\bin\v/thirdparty/tcc/lib/libgc.a"
+-lws2_32
+-ladvapi32
+-lkernel32
+-lpsapi
+[31mwarning: tcc compilation failed, falling back to gcc[39m
+> Failed build_thirdparty_obj_file cmd
+>           mod: builtin
+>          path: C:\bin\v/thirdparty/libgc/gc.o
+>   source_file: C:\bin\v\thirdparty\libgc\gc.c
+> wd before cmd: C:\Users\Administrator\Documents\PROJECT\ReverserID\Vmem
+> getwd for cmd: C:\bin\v
+>           cmd: gcc -std=c99 -D_DEFAULT_SOURCE   -fwrapv -Wno-incompatible-function-pointer-types  -D GC_THREADS=1 -D THREAD_LOCAL_ALLOC=1 -D GC_NOT_DLL=1 -D GC_WIN32_THREADS=1 -D GC_BUILTIN_ATOMIC=1 -D ALL_INTERIOR_POINTERS=1 -I"C:\bin\v\thirdparty\libgc\include" -o "C:\Users\Administrator\.vmodules\.cache\dc\dcaf59253f573ed312cf87a8b8f1ddf5.module.builtin.o" -c "C:\bin\v\thirdparty\libgc\gc.c"
+builder error: 

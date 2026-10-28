@@ -1,0 +1,24 @@
+# build outputs
+*.exe
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+
+# vmem runtime artifacts
+vmem_dump.bin
+radar_dump.bin
+vmem_table.txt
+victim_info.txt
+*.vs
+*.vscan
+
+# editor / os noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# tooling scratch
+.probe/
+mcp_smoke*.out

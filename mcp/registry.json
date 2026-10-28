@@ -1,0 +1,99 @@
+{
+  "project": "vmem",
+  "title": "Vmem — cross-platform process memory manipulation (Cheat Engine / GameGuardian class) in V",
+  "status": "planning; implementation starts at phase P0",
+  "docs": {
+    "readme": { "path": "README.md", "what": "overview, target tiers, repo layout" },
+    "skill": {
+      "path": "SKILL.md",
+      "what": "V language context + memory-tooling domain model + recipes (canonical skill; synced to agent skill dirs)",
+      "targets": [".omp/skills/vmem/SKILL.md", ".claude/skills/vmem/SKILL.md", ".codex/skills/vmem/SKILL.md"],
+      "userTargets": ["~/.claude/skills/vmem/SKILL.md", "~/.codex/skills/vmem/SKILL.md"]
+    },
+    "agents": { "path": "AGENTS.md", "what": "normative operating rules: layering, one-fn-per-file, API, testing, docs-sync, safety" },
+    "changelog": { "path": "CHANGELOG.md", "what": "memory changelog — every memory-affecting change under ### Memory" },
+    "plan": { "path": "docs/PLAN.md", "what": "vision, scope in/out, workstreams, phases P0-P8 with acceptance criteria, risks" },
+    "architecture": { "path": "docs/ARCHITECTURE.md", "what": "module tree, MemoryBackend contract, threading, error taxonomy, decision log" },
+    "platform-api": { "path": "docs/PLATFORM-API.md", "what": "per-OS API matrices, permission models, frida-style Android agent, build matrix" },
+    "feature-parity": { "path": "docs/FEATURE-PARITY.md", "what": "Cheat Engine / GameGuardian feature matrix mapped to phases" },
+    "gui": { "path": "docs/GUI.md", "what": "Radar GUI layout: donut, sparklines, scan timeline, custom gg/sokol kit" }
+  },
+  "rulesDoc": "agents",
+  "rules": {
+    "layering": "## 2. Layering",
+    "files": "## 3. File structure",
+    "api": "## 4. API conventions",
+    "testing": "## 5. Testing rules",
+    "docs-sync": "## 6. Docs sync",
+    "safety": "## 7. Safety scope",
+    "style": "## 8. Style"
+  },
+  "recipesDoc": "skill",
+  "recipes": {
+    "typed-read": "### 5.1",
+    "scan-op": "### 5.2",
+    "agent-rpc": "### 5.3",
+    "os-backend": "### 5.4"
+  },
+  "vrefDoc": "skill",
+  "vref": {
+    "syntax": "### 1.1",
+    "errors": "### 1.2",
+    "files": "### 1.3",
+    "interop": "### 1.4",
+    "concurrency": "### 1.5",
+    "build": "### 1.6"
+  },
+  "phases": { "doc": "plan", "headingPrefix": "### " },
+  "platform": {
+    "doc": "platform-api",
+    "sections": ["## 2. Desktop capability matrix", "## 4.2 On-device primitives"]
+  },
+  "parity": { "doc": "feature-parity" },
+  "structureChecks": [
+    {
+      "id": "os-calls-outside-sys",
+      "kind": "regex",
+      "regex": "\\bC\\.(ReadProcessMemory|WriteProcessMemory|OpenProcess|VirtualQueryEx|VirtualAllocEx|CreateRemoteThread|EnumProcessModules)|process_vm_(readv|writev)\\s*\\(|\\bptrace\\s*\\(|mach_vm_(read|write|region|allocate)",
+      "include": ["vmem/", "agent/", "cli/", "gui/"],
+      "exclude": ["vmem/sys/", "agent/"],
+      "severity": "error",
+      "message": "OS/transport API call outside vmem/sys/ or agent/ (AGENTS.md §2)"
+    },
+    {
+      "id": "ui-imports-sys",
+      "kind": "regex",
+      "regex": "import\\s+vmem\\.sys",
+      "include": ["gui/", "cli/"],
+      "exclude": [],
+      "severity": "error",
+      "message": "gui/cli must import only the vmem public API (AGENTS.md §2)"
+    },
+    {
+      "id": "multi-pub-fn",
+      "kind": "pubFnCount",
+      "include": ["vmem/"],
+      "exclude": ["vmem/sys/decl_", "errors.v"],
+      "max": 1,
+      "severity": "warn",
+      "message": "one function = one file; more than one pub fn here (AGENTS.md §3)"
+    },
+    {
+      "id": "long-file",
+      "kind": "lineCount",
+      "include": ["vmem/", "agent/", "gui/", "cli/"],
+      "exclude": ["vmem/sys/decl_", "types.v", "errors.v", "_test.v"],
+      "max": 220,
+      "severity": "warn",
+      "message": "file exceeds ~220 lines; split by function/concern (AGENTS.md §3)"
+    },
+    {
+      "id": "memory-changelog-section",
+      "kind": "fileContains",
+      "file": "CHANGELOG.md",
+      "regex": "### Memory",
+      "severity": "error",
+      "message": "CHANGELOG.md must keep a ### Memory section (changelog discipline)"
+    }
+  ]
+}
